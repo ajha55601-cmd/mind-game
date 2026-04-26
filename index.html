@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Card Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="game-wrap">
+
+    <!-- Header -->
+    <div class="game-header">
+      <div class="game-title">Memory Game</div>
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-label">Moves</div>
+          <div class="stat-val" id="moves">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Pairs</div>
+          <div class="stat-val" id="pairs">0/8</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Grid -->
+    <div class="grid" id="grid"></div>
+
+    <!-- Win Banner -->
+    <div class="win-banner" id="win">
+      <div class="win-title">You won! 🎉</div>
+      <div class="win-sub" id="win-msg"></div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-row">
+      <button class="btn" onclick="startGame()">New Game</button>
+    </div>
+
+    <p class="hint">Tap any card to start flipping!</p>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

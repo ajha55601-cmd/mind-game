@@ -1,0 +1,224 @@
+/* ===========================
+   Memory Card Game - style.css
+   =========================== */
+
+/* ---------- Reset & Base ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f0edf8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ---------- Game Wrapper ---------- */
+.game-wrap {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ---------- Header ---------- */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.game-title {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 28px;
+  color: #3C3489;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  display: flex;
+  gap: 12px;
+}
+
+.stat-box {
+  background: #ffffff;
+  border: 1.5px solid #d5d0f7;
+  border-radius: 12px;
+  padding: 6px 18px;
+  text-align: center;
+  min-width: 72px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #8880cc;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #3C3489;
+  line-height: 1.2;
+}
+
+/* ---------- Card Grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* ---------- Card ---------- */
+.card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  perspective: 600px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+}
+
+/* Flip the card when .flipped or .matched is added */
+.card.flipped .card-inner,
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Both sides share this */
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Back of card (emoji hidden) */
+.card-back {
+  background: linear-gradient(135deg, #7F77DD 0%, #534AB7 100%);
+  border: 2px solid #7F77DD;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.card-back::after {
+  content: '?';
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Front of card (emoji visible) — starts hidden (rotated away) */
+.card-front {
+  background: #ffffff;
+  border: 2px solid #d5d0f7;
+  font-size: 36px;
+  transform: rotateY(180deg);
+}
+
+/* Matched card gets green highlight */
+.card.matched .card-front {
+  background: #EAF3DE;
+  border-color: #639922;
+  animation: pop 0.3s ease;
+}
+
+/* ---------- Animations ---------- */
+@keyframes pop {
+  0%, 100% { transform: rotateY(180deg) scale(1); }
+  50%       { transform: rotateY(180deg) scale(1.12); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card.shake {
+  animation: shake 0.4s ease;
+}
+
+/* ---------- Win Banner ---------- */
+.win-banner {
+  display: none;
+  background: #EAF3DE;
+  border: 2px solid #639922;
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.win-banner.show {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.win-title {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 24px;
+  color: #3B6D11;
+  margin-bottom: 4px;
+}
+
+.win-sub {
+  font-size: 14px;
+  color: #3B6D11;
+}
+
+/* ---------- Buttons ---------- */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.2rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #7F77DD;
+  border-radius: 12px;
+  background: transparent;
+  color: #3C3489;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  background: #7F77DD;
+  color: #ffffff;
+}
+
+/* ---------- Hint Text ---------- */
+.hint {
+  font-size: 13px;
+  color: #9991cc;
+  text-align: center;
+  margin-top: 12px;
+}
